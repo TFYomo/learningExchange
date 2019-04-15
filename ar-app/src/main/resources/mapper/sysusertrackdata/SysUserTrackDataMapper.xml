@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aicloud.ar.biz.sysusertrackdata.dao.SysUserTrackDataMapper" >
+  <resultMap id="BaseResultMap" type="com.aicloud.ar.biz.sysusertrackdata.dto.SysUserTrackData" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_position_id" property="userPositionId" jdbcType="INTEGER" />
+    <result column="user_position_name" property="userPositionName" jdbcType="VARCHAR" />
+    <result column="user_department_id" property="userDepartmentId" jdbcType="INTEGER" />
+    <result column="user_department_name" property="userDepartmentName" jdbcType="VARCHAR" />
+    <result column="job_time" property="jobTime" jdbcType="TIMESTAMP" />
+    <result column="longitude" property="longitude" jdbcType="VARCHAR" />
+    <result column="latitude" property="latitude" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="queryAllCounts" resultType="java.lang.Integer" parameterType="com.aicloud.ar.biz.sysusertrackdata.dto.SysUserTrackData">
+    SELECT
+        count(1)
+    FROM
+        sys_user_track_data sutd
+  </select>
+
+  <select id="queryAll" resultMap="BaseResultMap" parameterType="com.aicloud.ar.biz.sysusertrackdata.dto.SysUserTrackData">
+    SELECT
+        sutd.id,
+        sutd.user_id,
+        sutd.user_name,
+        sutd.user_position_id,
+        sutd.user_position_name,
+        sutd.user_department_id,
+        sutd.user_department_name,
+        sutd.job_time,
+        sutd.longitude,
+        sutd.latitude,
+        sutd.address,
+        sutd.version
+    FROM
+        sys_user_track_data sutd
+        <where>
+            <if test="userId != null and ''!= userId ">
+                AND sutd.user_id = '${userId}'
+            </if>
+            <if test="userName != null and ''!= userName ">
+                AND sutd.user_name = '${userName}'
+            </if>
+            <if test="userPositionId != null and ''!= userPositionId ">
+                AND sutd.user_position_id = '${userPositionId}'
+            </if>
+            <if test="userPositionName != null and ''!= userPositionName ">
+                AND sutd.user_position_name = '${userPositionName}'
+            </if>
+            <if test="userDepartmentId != null and ''!= userDepartmentId ">
+                AND sutd.user_department_id = '${userDepartmentId}'
+            </if>
+            <if test="userDepartmentName != null and ''!= userDepartmentName ">
+                AND sutd.user_department_name = '${userDepartmentName}'
+            </if>
+            <if test="jobTime_Start != null and ''!= jobTime_Start ">
+                AND sutc.job_time &gt;= #{jobTime_Start}
+            </if>
+            <if test="jobTime_End != null and ''!= jobTime_End ">
+                AND sutc.job_time &lt;= #{jobTime_End}
+            </if>
+            <if test="longitude != null and ''!= longitude ">
+                AND sutd.longitude = '${longitude}'
+            </if>
+            <if test="latitude != null and ''!= latitude ">
+                AND sutd.latitude = '${latitude}'
+            </if>
+            <if test="address != null and ''!= address ">
+                AND sutd.address = '${address}'
+            </if>
+        </where>
+  </select>
+</mapper>

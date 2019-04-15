@@ -1,0 +1,18 @@
+spring:
+  profiles:
+    active: uat
+mybatis:
+  basepackage: com.aicloud.dao
+  xmlLocation: classpath:mapper/**/*.xml
+  mapper-locations: "classpath*:mapper/**/*.xml"
+logging:
+  level:
+    com.aicloud : debug
+swagger:
+  enabled: true
+  base-package: com.aicloud.ar
+  title: AR API
+  version: 1.0.0.0
+  description: AR
+  contact:
+    name: tfyomo@qq.com

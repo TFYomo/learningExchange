@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aicloud.ar.biz.sysusertrackconfiguration.dao.SysUserTrackConfigurationMapper" >
+  <resultMap id="BaseResultMap" type="com.aicloud.ar.biz.sysusertrackconfiguration.dto.SysUserTrackConfiguration" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="collection_objects" property="collectionObjects" jdbcType="INTEGER" />
+    <result column="collection_frequency" property="collectionFrequency" jdbcType="VARCHAR" />
+    <result column="collection_start_time" property="collectionStartTime" jdbcType="TIMESTAMP" />
+    <result column="collection_end_time" property="collectionEndTime" jdbcType="TIMESTAMP" />
+    <result column="enable" property="enable" jdbcType="INTEGER" />
+  </resultMap>
+
+  <select id="queryAll"  resultMap="BaseResultMap" parameterType="com.aicloud.ar.biz.sysusertrackconfiguration.dto.SysUserTrackConfiguration">
+  SELECT
+      sutc.id,
+      sutc.NAME,
+      sutc.collection_objects,
+      sutc.collection_frequency,
+      sutc.collection_start_time,
+      sutc.collection_end_time,
+      sutc.enable,
+      sutc.version
+  FROM
+      sys_user_track_configuration sutc
+      <where>
+          <if test="name != null and ''!= name ">
+              AND sutc.name = '${name}'
+          </if>
+          <if test="collectionObjects != null and ''!= collectionObjects ">
+              AND sutc.collection_objects = '${collectionObjects}'
+          </if>
+          <if test="collectionFrequency != null and ''!= collectionFrequency ">
+              AND sutc.collection_frequency = '${collectionFrequency}'
+          </if>
+          <if test="collectionStartTime_BeginTime != null and ''!= collectionStartTime_BeginTime ">
+             AND sutc.collection_start_time &gt;= #{collectionStartTime_BeginTime}
+          </if>
+          <if test="collectionStartTime_EndTime != null and ''!= collectionStartTime_EndTime ">
+              AND sutc.collection_start_time &lt;= #{collectionStartTime_EndTime}
+          </if>
+          <if test="collectionEndTime_BeginTime != null and ''!= collectionEndTime_BeginTime ">
+              AND sutc.collection_end_time &gt;= #{collectionEndTime_BeginTime}
+          </if>
+          <if test="collectionEndTime_EndTime != null and ''!= collectionEndTime_EndTime ">
+              AND sutc.collection_end_time &lt;= #{collectionEndTime_EndTime}
+          </if>
+      </where>
+
+  </select>
+
+  <select id="queryAllCounts" resultType="java.lang.Integer" parameterType="com.aicloud.ar.biz.sysusertrackconfiguration.dto.SysUserTrackConfiguration">
+    SELECT
+      count(1)
+  FROM
+      sys_user_track_configuration sutc
+      <where>
+          <if test="name != null and ''!= name ">
+              AND sutc.name = '${name}'
+          </if>
+          <if test="collectionObjects != null and ''!= collectionObjects ">
+              AND sutc.collection_objects = '${collectionObjects}'
+          </if>
+          <if test="collectionFrequency != null and ''!= collectionFrequency ">
+              AND sutc.collection_frequency = '${collectionFrequency}'
+          </if>
+          <if test="collectionStartTime_BeginTime != null and ''!= collectionStartTime_BeginTime ">
+              AND sutc.collection_start_time &gt;= #{collectionStartTime_BeginTime}
+          </if>
+          <if test="collectionStartTime_EndTime != null and ''!= collectionStartTime_EndTime ">
+              AND sutc.collection_start_time &lt;= #{collectionStartTime_EndTime}
+          </if>
+          <if test="collectionEndTime_BeginTime != null and ''!= collectionEndTime_BeginTime ">
+              AND sutc.collection_end_time &gt;= #{collectionEndTime_BeginTime}
+          </if>
+          <if test="collectionEndTime_EndTime != null and ''!= collectionEndTime_EndTime ">
+              AND sutc.collection_end_time &lt;= #{collectionEndTime_EndTime}
+          </if>
+      </where>
+  </select>
+</mapper>

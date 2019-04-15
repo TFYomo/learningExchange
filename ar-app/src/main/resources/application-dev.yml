@@ -1,0 +1,49 @@
+server:
+  port: 8090
+spring:
+  application:
+    name: sq-eip
+  datasource:
+    name: test
+    url: jdbc:mysql://localhost:3306/cw_uc?useUnicode=true&characterEncoding=UTF8
+    username: root
+    password: 16yo
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 5
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+    logSlowSql: true
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password:
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        max-idle: 8
+        min-idle: 0
+      timeout: 2000ms
+    cache:
+      type: redis
+      cache-names: redisCache
+      redis:
+        use-key-prefix: false
+        key-prefix:
+        cache-null-values: true
+        time-to-live: 600000
+druid-logininfo:
+  username: wnxm
+  password: wnxm666
